@@ -5,5 +5,8 @@
 
     <!-- Main -->
     <string name="main_title">Main</string>
+    <string name="deadline">Deadlines</string>
+    <string name="schedule">Schedule</string>
+    <string name="exam">Exam</string>
 
 </resources>

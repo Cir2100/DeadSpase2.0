@@ -3,5 +3,8 @@
 
     <!-- Main -->
     <string name="main_title">Главная</string>
+    <string name="deadline">Дедлайны</string>
+    <string name="schedule">Расписание</string>
+    <string name="exam">Сессия</string>
 
 </resources>
