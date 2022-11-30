@@ -9,4 +9,7 @@
     <string name="schedule">Schedule</string>
     <string name="exam">Exam</string>
 
+    <!-- Schedule -->
+    <string name="search_hint">Input group</string>
+
 </resources>

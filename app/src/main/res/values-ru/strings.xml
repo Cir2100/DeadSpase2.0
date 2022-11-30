@@ -7,4 +7,7 @@
     <string name="schedule">Расписание</string>
     <string name="exam">Сессия</string>
 
+    <!-- Schedule -->
+    <string name="search_hint">Введите группу</string>
+
 </resources>
