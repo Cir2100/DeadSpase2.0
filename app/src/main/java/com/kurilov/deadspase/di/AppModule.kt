@@ -2,6 +2,7 @@ package com.kurilov.deadspase.di
 
 import android.app.Application
 import android.content.Context
+import com.kurilov.deadspase.data.db.AppDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -18,6 +19,12 @@ class AppModule {
     @Provides
     fun provideAppContext(app: Application): Context {
         return app.applicationContext
+    }
+
+    @Singleton
+    @Provides
+    fun provideDatabase(app: Application): AppDatabase {
+        return AppDatabase.buildDatabase(app)
     }
 
 }
