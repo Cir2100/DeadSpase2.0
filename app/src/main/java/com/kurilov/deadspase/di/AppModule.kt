@@ -2,6 +2,8 @@ package com.kurilov.deadspase.di
 
 import android.app.Application
 import android.content.Context
+import com.kurilov.deadspase.data.api.schedule.ScheduleApiService
+import com.kurilov.deadspase.data.api.schedule.ScheduleRetrofitUtils
 import com.kurilov.deadspase.data.db.AppDatabase
 import dagger.Module
 import dagger.Provides
@@ -25,6 +27,13 @@ class AppModule {
     @Provides
     fun provideDatabase(app: Application): AppDatabase {
         return AppDatabase.buildDatabase(app)
+    }
+
+    @Singleton
+    @Provides
+    //todo all Api Service in one interface?
+    fun provideScheduleApiService(): ScheduleApiService {
+        return ScheduleRetrofitUtils.apiService
     }
 
 }

@@ -17,7 +17,7 @@ data class Group(
     val name: String,
 ) {
     companion object {
-        const val TABLE_NAME = "Group"
+        const val TABLE_NAME = "GroupTable"
 
         const val COLUMN_ID = "id"
         const val COLUMN_NAME = "name"

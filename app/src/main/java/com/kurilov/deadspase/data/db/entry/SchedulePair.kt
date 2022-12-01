@@ -12,11 +12,11 @@ data class SchedulePair(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = COLUMN_ID)
     val id: Long,
-    @ColumnInfo(name = COLUMN_NAME)
-    val name: String? = null,
+    @ColumnInfo(name = COLUMN_GROUP_NAME)
+    val groupName: String? = null,
     @SerializedName("Week")
     @ColumnInfo(name = COLUMN_WEEK)
-    val week: Boolean,
+    val week: Int,
     @SerializedName("Day")
     @ColumnInfo(name = COLUMN_DAY)
     val day: Int,
@@ -48,7 +48,7 @@ data class SchedulePair(
         const val TABLE_NAME = "SchedulePair"
 
         const val COLUMN_ID = "id"
-        const val COLUMN_NAME = "name"
+        const val COLUMN_GROUP_NAME = "group_name"
         const val COLUMN_WEEK = "week"
         const val COLUMN_DAY = "day"
         const val COLUMN_LESS = "less"

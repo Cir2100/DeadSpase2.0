@@ -1,5 +1,6 @@
 package com.kurilov.deadspase.ui.schedule
 
+import android.util.Log
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
@@ -10,6 +11,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.kurilov.deadspase.R
+import com.kurilov.deadspase.data.api.ErrorResult
+import com.kurilov.deadspase.data.api.PendingResult
+import com.kurilov.deadspase.data.api.SuccessResult
 import com.kurilov.deadspase.ui.widgets.DeadSpaceAppBar
 import com.kurilov.deadspase.ui.widgets.SearchField
 
@@ -23,6 +27,15 @@ fun ScheduleScreen(
     val scrollState = rememberLazyListState()
 
     val group = viewModel.group.collectAsState()
+    val schedule = viewModel.schedule.collectAsState()
+    val isInternetSchedule = viewModel.isInternetSchedule.collectAsState()
+    val isWeekRed = viewModel.isWeekRed.collectAsState()
+    when(val s = schedule.value) {
+        is PendingResult -> Log.d("Fuck","PendingResult Schedule")
+        is SuccessResult -> Log.d("Fuck","SuccesResult Schedule = ${s.data}")
+        is ErrorResult -> Log.d("Fuck","ErrorResult Schedule = ${s.exception}")
+    }
+
 
     Scaffold(
         topBar = {
