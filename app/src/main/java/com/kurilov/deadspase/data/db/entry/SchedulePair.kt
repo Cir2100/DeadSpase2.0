@@ -3,6 +3,7 @@ package com.kurilov.deadspase.data.db.entry
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.google.gson.*
 import com.google.gson.annotations.SerializedName
 
 @kotlinx.serialization.Serializable
@@ -25,10 +26,10 @@ data class SchedulePair(
     val less: Int,
     @SerializedName("Build")
     @ColumnInfo(name = COLUMN_BUILD)
-    val build: String,
+    val build: String?,
     @SerializedName("Rooms")
     @ColumnInfo(name = COLUMN_ROOM)
-    val room: String,
+    val room: String?,
     @SerializedName("Disc")
     @ColumnInfo(name = COLUMN_DISC)
     val disc: String,
@@ -40,9 +41,9 @@ data class SchedulePair(
     val groups: String,
     @SerializedName("PrepsText")
     @ColumnInfo(name = COLUMN_TEACHERS)
-    val teachers: String,
+    val teachers: String?,
     @ColumnInfo(name = COLUMN_IS_INTERNET_CASH)
-    val isInternetCash: Boolean = true,
+    val isInternetCash: Boolean,
 ) {
     companion object {
         const val TABLE_NAME = "SchedulePair"

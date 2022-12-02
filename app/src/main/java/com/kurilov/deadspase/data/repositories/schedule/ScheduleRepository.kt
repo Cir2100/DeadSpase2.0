@@ -11,7 +11,6 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import javax.inject.Inject
 
-//todo save cash
 class ScheduleRepository @Inject constructor(
     private val scheduleLoaderInternet: ScheduleLoaderInternet,
     private val scheduleLoaderLocal: ScheduleLoaderLocal,
@@ -30,28 +29,39 @@ class ScheduleRepository @Inject constructor(
         updateSemesterInfo()
     }
 
-    suspend fun getSchedule(name: String, isInternet: Boolean, isForceLoad: Boolean = false) {
+    suspend fun getSchedule(
+        name: String,
+        week: Boolean,
+        day: Int,
+        isInternet: Boolean,
+        isForceLoad: Boolean = false) {
         _schedule.value = PendingResult()
         val groupId = appDatabase.groupDao().getIdByName(name)
         val teacherId = appDatabase.teacherDao().getIdByName(name)
+        val weekInt = if (week) 1 else 2
+        val dayNew = if (day == 6) 0 else day + 1
         if (groupId == null && teacherId == null) {
             _schedule.value =  ErrorResult(Exception("Такого нет в гуапе")) //todo
-        }
-        _schedule.value =  if (isInternet) {
-            if (isForceLoad) {
-                if (groupId != null) {
-                    scheduleLoaderInternet.getGroupSchedule(groupId)
-                } else {
-                    scheduleLoaderInternet.getTeacherSchedule(teacherId!!)
-                }
-            } else {
-                scheduleLoaderLocal.getCash()
-            }
         } else {
-            scheduleLoaderLocal.getSchedule(name)
+            _schedule.value =  if (isInternet) {
+                if (isForceLoad) {
+                    val internetSchedule = if (groupId != null) {
+                        scheduleLoaderInternet.getGroupSchedule(groupId)
+                    } else {
+                        scheduleLoaderInternet.getTeacherSchedule(teacherId!!)
+                    }
+                    internetSchedule.takeSuccess()?.let { schedulePairs -> //todo
+                        appDatabase.schedulePairDao().saveCash(schedulePairs.map {
+                            it.copy(isInternetCash = true)
+                        })
+                    }
+                }
+                scheduleLoaderLocal.getDayCash(weekInt, dayNew)
+            } else {
+                scheduleLoaderLocal.getSchedule(name, weekInt, dayNew)
+            }
         }
     }
-
 
     private suspend fun updateSemesterInfo() {
         semesterInfo = scheduleLoaderInternet.getSemesterInfo().takeSuccess()

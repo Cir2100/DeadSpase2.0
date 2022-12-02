@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name"  translatable="false">DeadSpase</string>
+    <string name="app_name" translatable="false">DeadSpase</string>
 
     <!-- Main -->
     <string name="main_title">Main</string>
@@ -11,5 +11,11 @@
 
     <!-- Schedule -->
     <string name="search_hint">Input group</string>
+    <string name="ignore_lectures">L</string>
+    <string name="your_schedule">your schedule</string>
+    <string name="off_the_schedule_grid" translatable="false">...</string>
+    <string name="week">week</string>
+    <string name="blue_week">upper</string>
+    <string name="red_week">lower</string>
 
 </resources>

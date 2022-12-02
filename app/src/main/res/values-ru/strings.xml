@@ -9,5 +9,10 @@
 
     <!-- Schedule -->
     <string name="search_hint">Введите группу</string>
+    <string name="ignore_lectures">Л</string>
+    <string name="your_schedule">выше расписание</string>
+    <string name="week">неделя</string>
+    <string name="blue_week">нижняя</string>
+    <string name="red_week">верхняя</string>
 
 </resources>

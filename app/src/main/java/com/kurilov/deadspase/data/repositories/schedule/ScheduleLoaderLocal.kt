@@ -20,11 +20,11 @@ class ScheduleLoaderLocal @Inject constructor(
     suspend fun getTeachers(): Result<List<Teacher>> =
         databaseExecutor.getData { appDatabase.teacherDao().getAll() }
 
-    suspend fun getSchedule(name: String): Result<List<SchedulePair>> =
-        databaseExecutor.getData { appDatabase.schedulePairDao().getUserScheduleScheduleByName(name) }
+    suspend fun getSchedule(name: String, week: Int, day: Int): Result<List<SchedulePair>> =
+        databaseExecutor.getData { appDatabase.schedulePairDao().getUserScheduleScheduleByName(name, week, day) }
 
-    suspend fun getCash(): Result<List<SchedulePair>> =
-        databaseExecutor.getData { appDatabase.schedulePairDao().getAllCash() }
+    suspend fun getDayCash(week: Int, day: Int): Result<List<SchedulePair>> =
+        databaseExecutor.getData { appDatabase.schedulePairDao().getDayCash(week, day) }
 
     suspend fun getSemesterInfo(): Result<SemesterInfo> =
         databaseExecutor.getData { appDatabase.semesterInfoDao().get() }
